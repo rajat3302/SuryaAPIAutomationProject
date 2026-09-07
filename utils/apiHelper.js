@@ -6,6 +6,10 @@ const NEW_API_KEY = "kYxoW6fo_XOcrPFZe8Q1EeTk-Da6k9HT1D6pfjDHpXI";
 
 async function compareEndpoints(method, oldPath, newPath, dataOrParams = {}, expectedOldStatus = 200) {
     const isGet = method.toLowerCase() === 'get';
+    
+    // Yahan request data print karne ke liye add kar diya hai
+    console.log("=== REQUEST PAYLOAD / PARAMS ===", JSON.stringify(dataOrParams, null, 2));
+
     let oldResponseStatus;
     let oldData = null;
 
@@ -37,6 +41,7 @@ async function compareEndpoints(method, oldPath, newPath, dataOrParams = {}, exp
     const newResponseStatus = newResponse.status;
     const newData = newResponse.data; // <--- New API ka data capture kiya
     console.log("=== NEW API RESPONSE ===", JSON.stringify(newData, null, 2));
+    
     // Validations (Status Codes)
     expect(newResponseStatus).toBe(200);
     expect(oldResponseStatus).toBe(expectedOldStatus);
